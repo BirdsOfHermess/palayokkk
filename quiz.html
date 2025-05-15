@@ -1,0 +1,424 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit">
+
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+
+    <title>- Ang mahiwagang palayok</title>
+
+    
+    <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+
+    <link rel="stylesheet" href="assets/css/fontawesome.css">
+    <link rel="stylesheet" href="assets/css/templatemo-cyborg-gaming.css">
+    <link rel="stylesheet" href="assets/css/owl.css">
+    <link rel="stylesheet" href="assets/css/animate.css">
+    <link rel="stylesheet"href="https://unpkg.com/swiper@7/swiper-bundle.min.css"/>
+
+
+    <style>
+        body {
+          font-family: 'Poppins', sans-serif;
+          background: linear-gradient( #ACE1AF); 
+          color: #333;
+          margin: 0;
+          padding: 0;
+        }
+      
+        .header-area {
+        position: static; 
+        top: 0;
+        left: 0;
+        right: 0;
+        z-index: 1000;
+        background-color: transparent; /* Fully transparent */
+        padding: 0;
+        margin: 0;
+        box-shadow: none;
+        backdrop-filter: blur(10px); 
+        }
+
+.main-nav {
+  display: flex;
+  justify-content: flex-end; /* This aligns nav items to the right */
+  align-items: center;
+  padding: 15px 0;
+}
+
+.nav {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+}
+      
+.nav li {
+  display: inline-block;
+  margin: 0 5px; /* Reduced from 10px to 5px */
+}
+      
+        .nav a {
+          color: #333;
+          font-weight: 500;
+          text-decoration: none;
+          transition: color 0.3s;
+        }
+      
+        .nav a:hover,
+        .nav a.active {
+          color: #2b7a2b;
+        }
+      
+        .search-input input {
+          padding: 8px 12px;
+          border: 1px solid #ccc;
+          border-radius: 20px;
+          outline: none;
+          transition: border-color 0.3s;
+        }
+      
+        .search-input input:focus {
+          border-color: #2b7a2b;
+        }
+      
+        .page-content {
+          background-color: #ffffffee;
+          border-radius: 16px;
+          padding: 40px;
+          margin: 60px auto;
+          max-width: 1000px;
+          box-shadow: 0 12px 30px rgba(0, 0, 0, 0.2);
+        }
+      
+       
+        #js-preloader {
+          background: #b2f7b2;
+          position: fixed;
+          top: 0;
+          left: 0;
+          right: 0;
+          bottom: 0;
+          z-index: 9999;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+        }
+      
+        .preloader-inner .dot {
+          width: 20px;
+          height: 20px;
+          background-color: #2b7a2b;
+          border-radius: 50%;
+          animation: pulse 1s infinite;
+        }
+      
+        .dots span {
+          display: inline-block;
+          width: 10px;
+          height: 10px;
+          background: #2b7a2b;
+          border-radius: 50%;
+          margin: 5px;
+          animation: blink 1.2s infinite ease-in-out;
+        }
+      
+        @keyframes pulse {
+          0% { transform: scale(1); opacity: 1; }
+          50% { transform: scale(1.5); opacity: 0.5; }
+          100% { transform: scale(1); opacity: 1; }
+        }
+      
+        @keyframes blink {
+          0%, 100% { opacity: 0.2; }
+          50% { opacity: 1; }
+        }
+
+        .content-box {
+        background-color: #ffffffcc; /* soft white with transparency */
+       border-radius: 12px;
+       padding: 30px;
+       margin: 20px 0;
+       box-shadow: 0 6px 16px rgba(0, 0, 0, 0.1);
+       max-width: 800px;
+       margin-left: auto;
+       margin-right: auto;
+       text-align: justify;
+}
+
+       .content-box h2 {
+       color: #2b7a2b;
+       font-weight: 600;
+       margin-bottom: 15px;
+        }
+
+.text-box {
+  font-size: 16px;
+  line-height: 1.6;
+  color: #444;
+}
+.answer-box {
+  background-color: #e6f5e6; /* soft green */
+  border: 2px solid #2b7a2b;
+  border-radius: 8px;
+  padding: 12px 20px;
+  margin: 10px 0;
+  font-size: 16px;
+  color: #2b7a2b;
+  cursor: pointer;
+  transition: background-color 0.3s, transform 0.2s;
+}
+
+.answer-box:hover {
+  background-color: #c6eec6;
+  transform: scale(1.02);
+}
+
+.flash-correct {
+  animation: greenFlash 0.5s;
+}
+
+@keyframes greenFlash {
+  0% { background-color: #00ff0080; }
+  50% { background-color: #00ff00; }
+  100% { background-color: transparent; }
+}
+
+
+.answer-box.correct-clicked {
+  background-color: #a3e9a3 !important;
+  border-color: #2b7a2b !important;
+  color: #1a4d1a !important;
+  animation: correctFlash 0.5s ease-in-out;
+}
+
+.answer-box.wrong-clicked {
+  background-color: #f5a3a3 !important;
+  border-color: #ff0000 !important;
+  color: #800000 !important;
+  animation: wrongFlash 0.5s ease-in-out;
+}
+
+@keyframes correctFlash {
+  0% { background-color: #8eff8e; }
+  100% { background-color: #a3e9a3; }
+}
+
+@keyframes wrongFlash {
+  0% { background-color: #ff8e8e; }
+  100% { background-color: #f5a3a3; }
+}
+
+      </style>
+
+</head>
+
+
+<body>
+    
+    <div id="js-preloader" class="js-preloader">
+        <div class="preloader-inner">
+          <span class="dot"></span>
+          <div class="dots">
+            <span></span>
+            <span></span>
+            <span></span>
+          </div>
+        </div>
+      </div>
+
+      <header class="header-area header-sticky">
+        <div class="container">
+            <div class="row">
+                <div class="col-12">
+                    <nav class="main-nav">
+                        <ul class="nav">
+                            <li><a href="index.html" class="active">Home</a></li>
+                            <li><a href="browse.html" class="active">Quiz</a></li>
+                            <li><a href="quiz.html">Quiz<img src="assets/images/profile-header.jpg" alt=""></a></li>
+                            
+                        </ul>
+                        <a class='menu-trigger'>
+                            <span>Menu</span>
+                        </a>
+                     </nav>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12">
+               
+                <div class="page-content">
+                    <div class="content-box">
+                        <h2>1. Ano ang pamagat ng kwentong binasa?</h2>
+                        <div class="answer-box">A. Ang Palayok ni Aling Minda</div>
+                        <div class="answer-box">B. Ang Palayok ni Boyet</div>
+                        <div class="answer-box correct">C. Ang Mahiwagang Palayok</div>
+                        <div class="answer-box">D. Ang Lumang Palayok</div>
+                      </div>
+                    </div>
+
+                
+                    <div class="page-content">
+                      <div class="content-box">
+                        <h2>2. Sa kwentong binasa, sino ang masarap magluto ng iba't ibang putahe?</h2>
+                        <div class="answer-box">A. Aling Mira</div>
+                        <div class="answer-box correct">B. Aling Minda</div>
+                        <div class="answer-box">C. Aling Mara</div>
+                        <div class="answer-box">D. Aling Manda
+                        </div>
+                      </div>
+                    </div>
+
+                    <div class="page-content">
+                        <div class="content-box">
+                          <h2>3. Sino ang nagturo kay Aling Minda na magluto?</h2>
+                          <div class="answer-box">A. Lola Beth</div>
+                          <div class="answer-box">B. Lola Conching</div>
+                          <div class="answer-box correct">C. Lola Pacing</div>
+                          <div class="answer-box">D. Lola Pacita</div>
+                        </div>
+                      </div>
+                    </div>
+
+                    <div class="page-content">
+                        <div class="content-box">
+                          <h2>4. Ano ang reaksyon ni Minda tuwing nakikita niyang magana kumain ang kanyang mag-ama?</h2>
+                          <div class="answer-box">A. Malungkot</div>
+                          <div class="answer-box correct">B. Masaya</div>
+                          <div class="answer-box">C. Nanganga</div>
+                          <div class="answer-box">D. Takot</div>
+                        </div>
+                      </div>
+                    </div>
+
+                    <div class="page-content">
+                        <div class="content-box">
+                          <h2>5. Saan gawa ang mahiwagang palayok?</h2>
+                          <div class="answer-box">A. Bati</div>
+                          <div class="answer-box correct">B. Luwad</div>
+                          <div class="answer-box">C. Kahoy</div>
+                          <div class="answer-box">D. Metal</div>
+                        </div>
+                      </div>
+                    </div>
+
+   
+                    <div class="page-content">
+                      <div class="content-box">
+                        <h2>6. Ang mga sumusunod ay paborito ni Boyet, maliban sa isa. Alin dito?</h2>
+                        <div class="answer-box">A. Tinolang Manok</div>
+                        <div class="answer-box">B. Paksiw na Bangus</div>
+                        <div class="answer-box correct">C. Pinakbet</div>
+                        <div class="answer-box">D. Adobong Baboy</div>
+                      </div>
+                    </div>
+                </div>
+
+               
+                <div class="page-content">
+                  <div class="content-box">
+                    <h2>7.  Ano sa tingin mo ang naramdaman ni Aling Minda sa pag aalaga sa kanya ni Boyet?</h2>
+                    <div class="answer-box correct">A. Masaya</div>
+                    <div class="answer-box">B. Malungkot</div>
+                    <div class="answer-box">C. Galit</div>
+                    <div class="answer-box">D. Takot</div>
+                  </div>
+                </div>
+            </div>
+
+     
+            <div class="page-content">
+              <div class="content-box">
+                <h2>8. Tungkol saan ang kwentong  binasa?</h2>
+                <div class="answer-box">A. Karahasan</div>
+                <div class="answer-box">B. Kasiyahan</div>
+                <div class="answer-box">C. Pakikipagkaibigan</div>
+                <div class="answer-box correct">D. Pagmamahal</div>
+              </div>
+            </div>
+        </div>
+
+       
+        <div class="page-content">
+          <div class="content-box">
+            <h2>9. Ano ang ginagawa ng mag-anak bago kumain?</h2>
+            <div class="answer-box">A. Nag-aaway</div>
+            <div class="answer-box">B. Nagkwekwentuhan</div>
+            <div class="answer-box correct">C. Nagdadasal</div>
+            <div class="answer-box">D. Naglalaro</div>
+          </div>
+        </div>
+    </div>
+
+    
+    <div class="page-content">
+      <div class="content-box">
+        <h2>10.  Sa Anong paraan ipinakita ni Boyet ang pagmamalasakit Niya sa kanyang ina?</h2>
+        <div class="answer-box">A. Pagdidilig</div>
+        <div class="answer-box correct">B. Pagluluto</div>
+        <div class="answer-box">C. Paglalaba</div>
+        <div class="answer-box">D. Paglilinis</div>
+      </div>
+    </div>
+  
+      
+
+
+
+<video id="correct-sound" src="assets/sounds/correct.mp4" preload="auto" style="display: none;"></video>
+<video id="wrong-sound" src="assets/sounds/wrong.mp4" preload="auto" style="display: none;"></video>
+
+
+
+<script>
+  window.addEventListener('load', function () {
+    const preloader = document.getElementById('js-preloader');
+    if (preloader) preloader.style.display = 'none';
+  });
+
+  document.querySelectorAll('.answer-box').forEach(box => {
+    box.addEventListener('click', function () {
+      const correctSound = document.getElementById('correct-sound');
+      const wrongSound = document.getElementById('wrong-sound');
+
+      // Reset sounds
+      correctSound.pause();
+      wrongSound.pause();
+      correctSound.currentTime = 0;
+      wrongSound.currentTime = 0;
+
+      // Clear previously applied styles on all answers in the same group
+      const allAnswers = this.parentNode.querySelectorAll('.answer-box');
+      allAnswers.forEach(ans => {
+        ans.classList.remove('correct-clicked', 'wrong-clicked');
+      });
+
+      // Add class based on correctness
+      if (this.classList.contains('correct')) {
+        this.classList.add('correct-clicked');
+        correctSound.play().catch(e => console.warn("Correct sound error:", e));
+      } else {
+        this.classList.add('wrong-clicked');
+        wrongSound.play().catch(e => console.warn("Wrong sound error:", e));
+      }
+
+      // Remove effect after 3 seconds
+      setTimeout(() => {
+        this.classList.remove('correct-clicked', 'wrong-clicked');
+      }, 3000);
+    });
+  });
+</script>
+
+
+
+
+</body>
+</html>
